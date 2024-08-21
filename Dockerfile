@@ -12,15 +12,19 @@ RUN apt-get update && apt-get install -y \
     supervisor \
     && apt-get clean
 
-# Configure Nginx and Apache
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY apache2.conf /etc/apache2/apache2.conf
-
 # Create directories for supervisor configurations
 RUN mkdir -p /etc/supervisor/conf.d
 
 # Copy supervisor configuration file
 COPY supervisor.conf /etc/supervisor/conf.d/supervisor.conf
+
+# Copy Nginx and Apache configuration files
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY apache2.conf /etc/apache2/apache2.conf
+
+# Create the HTML files for Apache
+RUN mkdir -p /var/www/html && \
+    echo "Apache Working!" > /var/www/html/index.html
 
 # Expose ports
 EXPOSE 80 8080

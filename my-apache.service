@@ -1,9 +1,0 @@
-[Unit]
-Description=Apache HTTP Server
-
-[Service]
-ExecStart=/usr/sbin/apache2ctl -D FOREGROUND
-Restart=always
-
-[Install]
-WantedBy=multi-user.target

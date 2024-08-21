@@ -1,0 +1,39 @@
+name: Build and Test Multi-Web Container
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build Docker image
+        run: |
+          docker build -t multi-web-container .
+
+      - name: Run Docker container
+        run: |
+          docker network create my-network
+          docker run -d --name multi-web-container --network my-network -p 80:80 -p 8080:8080 multi-web-container
+
+      - name: Wait for services to start
+        run: sleep 10
+
+      - name: Test Nginx
+        run: |
+          curl -I http://localhost:80 | grep "200 OK"
+
+      - name: Test Apache
+        run: |
+          curl -I http://localhost:8080 | grep "200 OK"
+
+      - name: Stop and remove Docker container
+        run: |
+          docker stop multi-web-container
+          docker rm multi-web-container
+          docker network rm my-network

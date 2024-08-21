@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
 RUN mkdir -p /etc/supervisor/conf.d
 
 # Copy supervisor configuration file
-COPY supervisor.conf /etc/supervisor/conf.d/supervisor.conf
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Copy Nginx and Apache configuration files
 COPY nginx.conf /etc/nginx/nginx.conf

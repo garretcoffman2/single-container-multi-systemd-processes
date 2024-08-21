@@ -12,9 +12,6 @@ RUN apt-get update && apt-get install -y \
     supervisor \
     && apt-get clean
 
-# Enable MPM module
-RUN a2enmod mpm_prefork
-
 # Create directories for supervisor configurations
 RUN mkdir -p /etc/supervisor/conf.d
 

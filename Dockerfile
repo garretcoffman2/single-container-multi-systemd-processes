@@ -23,11 +23,15 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY apache2.conf /etc/apache2/apache2.conf
 
 # Create the HTML files for Apache
-RUN mkdir -p /var/www/html && \
-    echo "Apache Working!" > /var/www/html/index.html
+RUN mkdir -p /usr/local/apache2/htdocs && \
+    echo "Apache Working!" > /usr/local/apache2/htdocs/index.html
+
+# Create the HTML files for Nginx
+RUN mkdir -p /usr/share/nginx/html && \
+    echo "Apache Working!" > /usr/share/nginx/html/index.html
 
 # Expose ports
 EXPOSE 80 8080
 
-# Start supervisord
-CMD ["/usr/bin/supervisord"]
+# Start both Nginx and Apache services using supervisor
+CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]

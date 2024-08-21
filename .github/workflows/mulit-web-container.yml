@@ -24,13 +24,13 @@ jobs:
       - name: Wait for services to start
         run: sleep 10
 
-      - name: Test Nginx
+      - name: Curl Apache
         run: |
-          curl -I http://localhost:80 | grep "200 OK"
+          docker run --rm --network my-network curlimages/curl:latest curl -I http://multi-web-container:8080
 
-      - name: Test Apache
+      - name: Curl Nginx
         run: |
-          curl -I http://localhost:8080 | grep "200 OK"
+          docker run --rm --network my-network curlimages/curl:latest curl -I http://multi-web-container:80
 
       - name: Stop and remove Docker container
         run: |

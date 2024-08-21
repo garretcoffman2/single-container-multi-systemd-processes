@@ -34,4 +34,4 @@ RUN mkdir -p /usr/share/nginx/html && \
 EXPOSE 80 8080
 
 # Start both Nginx and Apache services using supervisor
-CMD ["supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]

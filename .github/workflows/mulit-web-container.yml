@@ -25,7 +25,10 @@ jobs:
         run: sleep 5
 
       - name: Look for Apache config file
-        run: docker exec multi-web-container apachectl -V
+        run: |
+          docker exec multi-web-container apachectl -V
+          docker exec multi-web-container cat /etc/apache2/apache2.conf
+
 
       - name: Check apache2 configuration
         run: docker exec multi-web-container apachectl configtest
@@ -46,12 +49,12 @@ jobs:
         
       - name: Curl Apache
         run: |
-          docker run --rm --network my-network curlimages/curl:latest curl http://multi-web-container:8080
+          docker run --rm --network my-network curlimages/curl:latest curl -I http://multi-web-container:8080
         continue-on-error: true
 
       - name: Curl Nginx
         run: |
-          docker run --rm --network my-network curlimages/curl:latest curl http://multi-web-container:80
+          docker run --rm --network my-network curlimages/curl:latest curl -I http://multi-web-container:80
         continue-on-error: true
 
       - name: Stop and remove Docker container

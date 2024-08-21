@@ -38,13 +38,8 @@ jobs:
           docker exec multi-web-container supervisorctl status
 
       - name: Read apache2 log files
-        run: |
-          cat /var/log/apache2/error.log
-          ls -ls /var/log/apache2
-          echo ""
-          echo ""
-          echo ""
-          cat /var/log/apache2/other_vhosts_access.log
+        run: docker exec multi-web-container cat /var/log/apache2/error.log
+
         continue-on-error: true
         
       - name: Curl Apache

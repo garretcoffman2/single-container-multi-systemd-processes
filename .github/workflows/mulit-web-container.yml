@@ -28,6 +28,8 @@ jobs:
         run: |
           docker exec multi-web-container apachectl -V
           docker exec multi-web-container cat /etc/apache2/apache2.conf
+          echo ""
+          docker exec multi-web-container cat /etc/apache2/ports.conf
 
 
       - name: Check apache2 configuration
@@ -36,9 +38,6 @@ jobs:
       - name: Check Status of Supervisord
         run: |
           docker exec multi-web-container supervisorctl status
-
-      - name: Read apache2 log files
-        run: docker exec multi-web-container cat /var/log/apache2/error.log
 
         continue-on-error: true
         

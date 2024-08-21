@@ -30,7 +30,9 @@ jobs:
 
       - name: Read apache2 log files
         run: |
-          ls -la /var/log
+          cat /var/log/supervisor/supervisord.log
+          ls -la /var/log/apache2
+          ls -la /var/log/nginx
           cat /var/log/apache2.err.log
           echo ""
           echo ""

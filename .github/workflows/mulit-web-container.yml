@@ -28,7 +28,14 @@ jobs:
         run: docker exec multi-web-container supervisorctl status
         continue-on-error: true
 
-
+      - name: read apache2 log files
+        run: |
+          cat /var/log/apache2.err.log
+          echo ""
+          echo ""
+          echo ""
+          cat /var/log/apache2.out.log
+        
       - name: Curl Apache
         run: |
           docker run --rm --network my-network curlimages/curl:latest curl http://multi-web-container:8080

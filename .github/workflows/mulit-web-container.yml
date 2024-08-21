@@ -16,10 +16,12 @@ jobs:
         run: |
           docker build -t multi-web-container .
 
-      - name: Run Docker container
+      - name: Create Docker Network
         run: |
           docker network create my-network
-          docker run -d --name multi-web-container --network my-network -p 80:80 -p 8080:8080 multi-web-container
+
+      - name: Run Docker container
+        run: docker run -d --name multi-web-container --network my-network -p 80:80 -p 8080:8080 multi-web-container
 
       - name: Wait for services to start
         run: sleep 5
@@ -27,12 +29,10 @@ jobs:
       - name: Curl Apache
         run: |
           docker run --rm --network my-network curlimages/curl:latest curl -I http://multi-web-container:8080
-        continue-on-error: true
 
       - name: Curl Nginx
         run: |
           docker run --rm --network my-network curlimages/curl:latest curl -I http://multi-web-container:80
-        continue-on-error: true
 
       - name: Stop and remove Docker container
         run: |

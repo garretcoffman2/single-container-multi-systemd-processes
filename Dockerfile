@@ -1,6 +1,10 @@
 # Use an official Ubuntu base image
 FROM ubuntu:20.04
 
+# Set environment variables for non-interactive installation
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Et
+
 # Install systemd and other necessary packages
 RUN apt-get update && \
     apt-get install -y \

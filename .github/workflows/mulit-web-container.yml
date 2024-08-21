@@ -24,6 +24,10 @@ jobs:
       - name: Wait for services to start
         run: sleep 10
 
+      - name: Check Status of Supervisord
+        run: docker exec -it multi-web-container supervisorctl status
+
+
       - name: Curl Apache
         run: |
           docker run --rm --network my-network curlimages/curl:latest curl -I http://multi-web-container:8080

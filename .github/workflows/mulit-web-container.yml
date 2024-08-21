@@ -30,7 +30,8 @@ jobs:
 
       - name: Read apache2 log files
         run: |
-          ls -la /var/log
+          ls -la /var/log/apache2
+          ls -la /var/log/nginx
           echo ""
           echo ""
           echo ""

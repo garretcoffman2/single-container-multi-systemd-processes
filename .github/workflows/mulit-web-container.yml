@@ -30,7 +30,7 @@ jobs:
 
       - name: Read apache2 log files
         run: |
-          cat /var/log/myapache.err.log
+          ls -la /var/log
           echo ""
           echo ""
           echo ""

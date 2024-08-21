@@ -22,10 +22,16 @@ jobs:
           docker run -d --name multi-web-container --network my-network -p 80:80 -p 8080:8080 multi-web-container
 
       - name: Wait for services to start
-        run: sleep 10
+        run: sleep 5
+
+      - name: Check apache2 configuration
+        run: docker exec multi-web-container apachectl configtest
 
       - name: Check Status of Supervisord
-        run: docker exec multi-web-container supervisorctl status
+        run: |
+        docker exec multi-web-container supervisorctl status
+        echo ""
+        docker exec multi-web-container cat /var/log/supervisor/supervisord.log
         continue-on-error: true
 
       - name: Read apache2 log files

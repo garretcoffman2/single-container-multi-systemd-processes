@@ -20,7 +20,7 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Copy Nginx and Apache configuration files
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY apache2.conf /etc/apache2/apache2.conf
+# COPY apache2.conf /etc/apache2/apache2.conf
 
 # Create the HTML files for Apache
 RUN mkdir -p /var/www/html/ && \

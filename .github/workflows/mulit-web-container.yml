@@ -30,9 +30,6 @@ jobs:
       - name: Check Status of Supervisord
         run: |
           docker exec multi-web-container supervisorctl status
-          echo ""
-          docker exec multi-web-container cat /var/log/supervisor/supervisord.log
-        continue-on-error: true
 
       - name: Read apache2 log files
         run: |

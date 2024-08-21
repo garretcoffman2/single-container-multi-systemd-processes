@@ -28,7 +28,7 @@ jobs:
         run: docker exec multi-web-container supervisorctl status
         continue-on-error: true
 
-      - name: read apache2 log files
+      - name: Read apache2 log files
         run: |
           cat /var/log/apache2.err.log
           echo ""

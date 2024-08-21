@@ -30,11 +30,11 @@ jobs:
 
       - name: Read apache2 log files
         run: |
-          ls -la /var/log/apache2
-          ls -la /var/log/nginx
+          cat /var/log/apache2/error.log
           echo ""
           echo ""
           echo ""
+          cat /var/log/apache2/other_vhosts_access.log
         continue-on-error: true
         
       - name: Curl Apache

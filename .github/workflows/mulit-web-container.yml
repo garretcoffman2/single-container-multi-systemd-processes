@@ -31,12 +31,12 @@ jobs:
 
       - name: Curl Apache
         run: |
-          docker run --rm --network my-network curlimages/curl:latest curl -I http://multi-web-container:8080
+          docker run --rm --network my-network curlimages/curl:latest curl http://multi-web-container:8080
         continue-on-error: true
 
       - name: Curl Nginx
         run: |
-          docker run --rm --network my-network curlimages/curl:latest curl -I http://multi-web-container:80
+          docker run --rm --network my-network curlimages/curl:latest curl http://multi-web-container:80
         continue-on-error: true
 
       - name: Stop and remove Docker container

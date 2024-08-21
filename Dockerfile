@@ -28,7 +28,7 @@ RUN mkdir -p /usr/local/apache2/htdocs && \
 
 # Create the HTML files for Nginx
 RUN mkdir -p /usr/share/nginx/html && \
-    echo "Apache Working!" > /usr/share/nginx/html/index.html
+    echo "Nginx Working!" > /usr/share/nginx/html/index.html
 
 # Expose ports
 EXPOSE 80 8080

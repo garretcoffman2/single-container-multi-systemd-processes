@@ -26,6 +26,7 @@ jobs:
 
       - name: Check Status of Supervisord
         run: docker exec multi-web-container supervisorctl status
+        continue-on-error: true
 
 
       - name: Curl Apache

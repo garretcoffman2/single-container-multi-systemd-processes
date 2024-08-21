@@ -34,6 +34,7 @@ jobs:
           echo ""
           echo ""
           echo ""
+        continue-on-error: true
         
       - name: Curl Apache
         run: |
